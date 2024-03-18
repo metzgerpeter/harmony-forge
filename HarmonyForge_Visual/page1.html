@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+    <style>
+        .page__background {
+            background: radial-gradient(circle, #bc6df5, #141485);
+        }
+
+        .page__content {
+            padding: 20px;
+
+        }
+
+        .list {
+            background-color: transparent;
+            background-image: none;
+        }
+
+        .list-header {
+            color: white;
+            background-color: transparent;
+            background-image: none;
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        .header-wrap {
+            position: relative;
+            margin-bottom: 40px;
+            margin-top: 20px;
+        }
+
+        .list-header {
+            position: absolute;
+            padding: 0 30px;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .list-header,
+        .list-item {
+            text-align: center;
+        }
+
+        .item-wrap {
+            height: 300px;
+            overflow-y: scroll;
+            color: rgba(255, 255, 255, .5);
+        }
+
+        .item-wrap::-webkit-scrollbar {
+            display: none;
+        }
+
+        .mood-item-wrap {
+            height: 200px;
+        }
+
+        .root-item span {
+            display: inline-block;
+            width: 10px;
+            pointer-events: none;
+        }
+
+        .mood-item span {
+            display: inline-block;
+            width: 40px;
+            pointer-events: none;
+        }
+
+        .item {
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            border-radius: 13px;
+
+        }
+
+        .item.active {
+            background: rgba(247, 249, 255, 0.19);
+            color: #fff;
+        }
+
+        .list-item {
+            color: rgba(255, 255, 255, .5);
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .list-item__center {
+            justify-content: center;
+            background-image: none;
+        }
+
+        .list-item--material {
+            background-color: transparent;
+        }
+
+        .list-item__title {
+            color: white;
+        }
+
+        .list-item--material:active {
+            background-color: #495057;
+        }
+
+        .btn-wrap {
+            position: fixed;
+            bottom: 20px;
+            width: 90%;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .btn-wrap a {
+            text-decoration: none;
+        }
+
+        .button--large--cta {
+            padding: 12px 0;
+            background-color: #F94B26;
+        }
+
+        .mood-wrap {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <ons-page class="page__background">
+        <ons-list>
+            <div class="header-wrap">
+                <ons-list-header>ROOT</ons-list-header>
+            </div>
+            <div class="item-wrap root-item-wrap">
+                <div class="item root-item">
+                    <span>C</span>
+                </div>
+                <div class="item root-item active">
+                    <span>C#</span>
+                </div>
+                <div class="item root-item">
+                    <span>D</span>
+                </div>
+                <div class="item root-item">
+                    <span>D#</span>
+                </div>
+                <div class="item root-item">
+                    <span>E</span>
+                </div>
+                <div class="item root-item">
+                    <span>F</span>
+                </div>
+                <div class="item root-item">
+                    <span>F#</span>
+                </div>
+                <div class="item root-item">
+                    <span>G</span>
+                </div>
+                <div class="item root-item">
+                    <span>G#</span>
+                </div>
+                <div class="item root-item">
+                    <span>A</span>
+                </div>
+                <div class="item root-item">
+                    <span>A#</span>
+                </div>
+                <div class="item root-item">
+                    <span>B</span>
+                </div>
+            </div>
+        </ons-list>
+        <div class="mood-wrap">
+            <ons-list>
+                <div class="header-wrap">
+                    <ons-list-header>MOOD</ons-list-header>
+                </div>
+                <div class="item-wrap mood-item-wrap">
+                    <div class="item mood-item">
+                        <span>BRIGHT</span>
+                    </div>
+                    <div class="item active mood-item">
+                        <span>DARK</span>
+                    </div>
+                    <div class="item mood-item">
+                        <span>JOYOUS</span>
+                    </div>
+                </div>
+            </ons-list>
+        </div>
+        <div class="btn-wrap">
+            <a href="./page2.html">
+                <ons-button class="ok" modifier="large--cta">OK</ons-button>
+            </a>
+        </div>
+    </ons-page>
+    <script>
+        const rootItemWrap = document.querySelector('.root-item-wrap')
+        rootItemWrap.addEventListener('click', e => {
+            for (let value of rootItemWrap.children) {
+                value.classList.remove('active')
+            }
+            e.target.classList.add('active')
+        })
+        const moodItemWrap = document.querySelector('.mood-item-wrap')
+        moodItemWrap.addEventListener('click', e => {
+            for (let value of moodItemWrap.children) {
+                value.classList.remove('active')
+            }
+            e.target.classList.add('active')
+        })
+
+    </script>
+</body>
+
+</html>

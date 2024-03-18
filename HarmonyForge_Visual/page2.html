@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+    <style>
+        .page__background {
+            background: radial-gradient(circle, #bc6df5, #141485);
+        }
+
+        .page__content {
+            padding: 20px;
+
+        }
+
+        .list {
+            background-color: transparent;
+            background-image: none;
+        }
+
+        .item {
+            border-radius: 14px;
+            box-shadow: 0px 8px 24px 0px rgba(149, 157, 165, 0.2);
+            background: rgba(255, 255, 255, 0.19);
+            padding: 30px 24px 25px;
+            color: #fff;
+            font-size: 32px;
+            margin-bottom: 25px;
+        }
+
+        .top-wrap {
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .btn-wrap {
+            position: fixed;
+            bottom: 20px;
+            width: 90%;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .button--large--cta {
+            padding: 12px 0;
+            background-color: #F94B26;
+        }
+
+        .control-icon {
+            width: 30px;
+            height: 30px;
+        }
+
+        .control-wrap {
+            display: flex;
+            align-items: center;
+            margin-top: 25px;
+        }
+
+        .play-wrap {
+            width: 80%;
+            display: flex;
+            align-items: center;
+            border-radius: 13px;
+            background: rgba(255, 255, 255, 0.24);
+            padding: 13px;
+            margin-right: 10px;
+        }
+
+        .progress {
+            flex: 1;
+            height: 22px;
+            margin-left: 10px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <ons-page class="page__background">
+        <ons-list>
+            <div class="item-wrap">
+                <div class="item">
+                    <div class="top-wrap">
+                        <span>D</span>
+                        <span>E</span>
+                        <span>A</span>
+                        <span>G</span>
+                    </div>
+                    <div class="control-wrap">
+                        <div class="play-wrap">
+                            <img class="control-icon" src="./assets/play.png" alt="">
+                            <img class="progress" src="./assets/progress.png" alt="">
+                        </div>
+                        <img class="control-icon" src="./assets/circle.png" alt="">
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="top-wrap">
+                        <span>D</span>
+                        <span>G</span>
+                        <span>A</span>
+                        <span>E</span>
+                    </div>
+                    <div class="control-wrap">
+                        <div class="play-wrap">
+                            <img class="control-icon" src="./assets/stop.png" alt="">
+                            <img class="progress" src="./assets/progress.png" alt="">
+                        </div>
+                        <img class="control-icon" src="./assets/circle.png" alt="">
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="top-wrap">
+                        <span>E</span>
+                        <span>G</span>
+                        <span>F</span>
+                        <span>D</span>
+                    </div>
+                    <div class="control-wrap">
+                        <div class="play-wrap">
+                            <img class="control-icon" src="./assets/play.png" alt="">
+                            <img class="progress" src="./assets/progress.png" alt="">
+                        </div>
+                        <img class="control-icon" src="./assets/circle.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </ons-list>
+        <div class="btn-wrap">
+            <a href="./page1.html">
+                <ons-button  modifier="large--cta">BACK</ons-button>
+            </a>
+        </div>
+    </ons-page>
+
+    <script>
+        
+
+    </script>
+</body>
+
+</html>
