@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chord Player</title>
+   <!-- Include Tone.js library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.26/Tone.js"></script>
+  
+
+</head>
+<body>
+
+<button id="playButton" onclick="togglePlayPause()">Play Chords</button>
+
+<script>
+
+  const sampler = new Tone.Sampler({
+      urls: {
+        A0: "A0.mp3",
+        C1: "C1.mp3",
+        "D#1": "Ds1.mp3",
+        "F#1": "Fs1.mp3",
+        A1: "A1.mp3",
+        C2: "C2.mp3",
+        "D#2": "Ds2.mp3",
+        "F#2": "Fs2.mp3",
+        A2: "A2.mp3",
+        C3: "C3.mp3",
+        "D#3": "Ds3.mp3",
+        "F#3": "Fs3.mp3",
+        A3: "A3.mp3",
+        C4: "C4.mp3",
+        "D#4": "Ds4.mp3",
+        "F#4": "Fs4.mp3",
+        A4: "A4.mp3",
+        C5: "C5.mp3",
+        "D#5": "Ds5.mp3",
+        "F#5": "Fs5.mp3",
+        A5: "A5.mp3",
+        C6: "C6.mp3",
+        "D#6": "Ds6.mp3",
+        "F#6": "Fs6.mp3",
+        A6: "A6.mp3",
+        C7: "C7.mp3",
+        "D#7": "Ds7.mp3",
+        "F#7": "Fs7.mp3",
+        A7: "A7.mp3",
+        C8: "C8.mp3"
+      },
+      release: 1,
+      baseUrl: "https://tonejs.github.io/audio/salamander/"
+    }).toDestination();
+
+  let isPlaying = false;
+  let timeoutIds = [];
+  const playButton = document.getElementById("playButton");
+
+  function togglePlayPause() {
+    if (isPlaying) {
+      // Pause the playback
+      timeoutIds.forEach(id => clearTimeout(id));
+      timeoutIds = [];
+      isPlaying = false;
+      playButton.textContent = "Play Chords";
+    } else {
+      // Start playing chords
+      playChords();
+      isPlaying = true;
+      playButton.textContent = "Pause";
+    }
+  }
+
+  function playChords() {
+    // Play C major chord
+    sampler.triggerAttackRelease(["C4", "E4", "G4"], 2);
+
+    // Play F major chord after 2 seconds
+    const fTimeout = setTimeout(() => {
+      sampler.triggerAttackRelease(["F4", "A4", "C5"], 2);
+    }, 2000);
+    timeoutIds.push(fTimeout);
+
+    // Play G major chord after 4 seconds
+    const gTimeout = setTimeout(() => {
+      sampler.triggerAttackRelease(["G4", "B4", "D5"], 2);
+    }, 4000);
+    timeoutIds.push(gTimeout);
+  }
+</script>
+
+</body>
+</html>
+
+
+
