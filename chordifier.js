@@ -1,9 +1,7 @@
 //This file will be both a library of progressions and a hub for processing progressions into desired chords based on the key provided.
 
 //Structure of progressions:
-//ID, [chord1], [chord2], [chord3], [chord4]
-
-//mood library will just be a list of ID's that match
+//ID, [moods], [[chord1], [chord2], [chord3], [chord4]]
 
 //Structure of chords in progressions
 //root note 1-7
@@ -21,6 +19,7 @@
 //Example: if the progression is "I, vi, IV, V7" and the root note is C, chords would be stored as:
 	//[
 		//ID number,
+		//[mood1,mood2,mood3]
 		//[1,1,0],
 		//[6,2,0],
 		//[4,1,0],
@@ -35,3 +34,210 @@
 	//	["G7", 67, 71, 74, 77]
 	//]
 
+class progressionSource{
+	constructor(id, moods, chordRecipes) {
+		this.id = id;
+		this.moods = moods;
+		this.chordRecipes = chordRecipes;
+	}
+}
+
+//Structure of chords in progressions
+	//root note 1-7
+	//triad type 1 major, 2 minor, 3 augmented, 4 diminished
+	//7th type 0 octave, 1 major, 2 minor, 3 diminished
+
+const progSource1 = new progressionSource(
+	1,				//ID
+	["bright"],		//mood(s)
+	[				//array of chord recipes
+		[1,1,0],		//chord1: I
+		[4,1,0],		//chord2: IV
+		[5,1,0],		//chord3: V
+		[5,1,2]			//chord4: V7
+	]
+);
+
+const progSource2 = new progressionSource(
+	2,				//ID
+	["bright"],		//mood(s)
+	[				//array of chord recipes
+		[1,1,0],		//chord1: I
+		[5,1,0],		//chord2: V
+		[6,2,0],		//chord3: vi
+		[4,1,0]			//chord4: IV
+	]
+);
+
+const progSource3 = new progressionSource(
+	3,				//ID
+	["bright"],		//mood(s)
+	[				//array of chord recipes
+		[1,1,0],		//chord1: I
+		[6,2,2],		//chord2: vi min7
+		[5,1,0],		//chord3: V
+		[4,1,0]			//chord4: IV
+	]
+);
+
+class Chord {
+	constructor(name, notes) {
+		this.name = name;
+		this.notes = notes;
+	}
+}
+
+class Chordify {
+	static chordify(root, recipe){	//root should be 0-11 for C-B respectively, recipe as defined above
+		const noteNames = ["C", "Db", "D", "Eb", "E", "F", "F#", "G", "Ab", "A", "Bb", "B"];
+		
+		//find semitone offset of chord by scale degree
+		let rootMod = 0;
+		if (recipe[0] == 1){
+			rootMod = 0;
+		}
+		else if (recipe[0] == 2){
+			rootMod = 2;
+		}
+		else if (recipe[0] == 3){
+			rootMod = 4;
+		}
+		else if (recipe[0] == 4){
+			rootMod = 5;
+		}
+		else if (recipe[0] == 5){
+			rootMod = 7;
+		}
+		else if (recipe[0] == 6){
+			rootMod = 9;
+		}
+		else if (recipe[0] == 7){
+			rootMod = 11;
+		}
+		else{
+			console.log("Error: Invalid scale degree in recipe.");
+		}
+
+		//use rootMod to begin name of chord
+		let chordName = noteNames[(root+rootMod)%12];
+
+		//append triad tonality if not major
+		if (recipe[1] == 1){
+		}
+		else if (recipe[1] == 2){
+			chordName += "m";
+		}
+		else if (recipe[1] == 3){
+			chordName += "aug";
+		}
+		else if (recipe[1] == 4){
+			chordName += "dim";
+		}
+		else{
+			console.log("Error: Invalid triad tonality in recipe.");
+		}
+
+		//append 7th tonality if used
+		if (recipe[2] == 0){
+		}
+		else if (recipe[2] == 1){
+			chordName += "M7";
+		}
+		else if (recipe[2] == 2){
+			chordName += "7";
+		}
+		else if (recipe[2] == 3){
+			if (recipe[1] == 4){
+				chordName += "7";
+			}
+			else{
+				chordName += "dim7";
+			}
+		}
+		else{
+			console.log("Error: Invalid seventh tonality in recipe.");
+		}
+
+		console.log("The chord specified is a " + chordName + ".");
+
+		//define MIDI note numbers for chord tones
+		const chordRoot = 60+root+rootMod;
+		let chordThird = chordRoot;
+		let chordFifth = chordRoot;
+
+		//build triad based on tonality
+		//major
+		if (recipe[1] == 1){
+			chordThird += 4;
+			chordFifth += 7;
+		}
+		
+		//minor
+		else if (recipe[1] == 2){
+			chordThird += 3;
+			chordFifth += 7;
+		}
+		
+		//augmented
+		else if (recipe[1] == 3){
+			chordThird += 4;
+			chordFifth += 8;
+		}
+		
+		//diminished
+		else if (recipe[1] == 4){
+			chordThird += 3;
+			chordFifth += 6;
+		}
+
+		else{
+			console.log("Error: Invalid triad tonality in recipe.");
+		}
+
+		//append top note
+		let chordTop = chordRoot;
+		if (recipe[2] == 0){
+			chordTop += 12;
+		}
+		else if (recipe[2] == 1){
+			chordTop += 11;
+		}
+		else if (recipe[2] == 2){
+			chordTop += 10;
+		}
+		else if (recipe[2] == 3){
+			chordTop += 9;
+		}
+		else{
+			console.log("Error: Invalid seventh tonality in recipe.");
+		}
+
+		console.log("Chord MIDI notes are " + chordRoot + ", " + chordThird + ", " + chordFifth + ", and " + chordTop + ".");
+		
+		//build array of note numbers
+		const chordNotes = [chordRoot, chordThird, chordFifth, chordTop];
+		
+		//create Chord object
+		const result = new Chord(chordName, chordNotes);
+
+		//return Chord object
+		return(result);
+	}
+
+	static buildProgItem(root, source){ //root should be 0-11 for C-B respectively, progSource as defined above
+	
+		//instantiate array to hold chords
+		const myChords = [];
+
+		//iterate through list of chord recipes to create chords in key
+		for(let i = 0; i < source.chordRecipes.length; i++){
+			const thisChord = Chordify.chordify(root,source.chordRecipes[i]);
+			myChords.push(thisChord);
+			console.log("Chord " + (i+1) + ": " + thisChord.name + ": " + thisChord.notes);
+		}
+		console.log(myChords);
+	}
+}
+
+//test using progSource1 and the key of C
+console.log(Chordify.buildProgItem(0,progSource1));
