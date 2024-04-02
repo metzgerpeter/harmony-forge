@@ -163,7 +163,7 @@
                 this.chordsPerBeat = 1;
                 this.nRepetitionChord = 4;
                 this.updateRate = 30;
-                this.loop = false;
+                this.loop = true;
             }
         }
         //--------------------------------------------Tape --------------------------------------------
@@ -577,9 +577,10 @@
         const progression1 = new ProgressionItem([chords.C_Major, chords.F_Major, chords.G_Major, chords.C_Major]);
         const progression2 = new ProgressionItem([chords.G_Major, chords.D_Minor, chords.E_Minor, chords.C_Major]);
         const progression3 = new ProgressionItem([chords.A_Major, chords.D_Major, chords.G_Major, chords.C_Major]);
+        const progression4 = new ProgressionItem([chords.A_Major, chords.D_Major, chords.G_Major, chords.C_Major]);
 
         //create 3 ProgressionItem based
-        var pagePlayer = new PagePlayer([progression1, progression2, progression3]);
+        var pagePlayer = new PagePlayer([progression1, progression2, progression3, progression4]);
         pagePlayer.createAllItems();
 
 

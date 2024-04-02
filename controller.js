@@ -10,7 +10,7 @@ var app = {
 		app.navigator.addEventListener("postpush", app.viewChangeHandler);
 		app.navigator.addEventListener("postpop", app.pagePopHandler);
 
-		app.switchView("HomeView");
+		app.switchView("SettingsView");
 
 	},
 	viewChangeHandler: event => {
