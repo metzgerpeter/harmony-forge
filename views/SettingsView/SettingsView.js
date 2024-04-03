@@ -6,6 +6,11 @@ class SettingsView {
 
 		// invoke the render method.
 		this.render();
+
+		// retrieve the mood & root id.
+		var config = app.navigator.topPage.data;
+
+		// config.root, config.mood.
 	}
 
 	// render-related tasks here.
@@ -41,6 +46,12 @@ class SettingsView {
 		/*this.renderTarget.querySelector(".content").innerHTML = `
 		<ons-button onclick="app.switchView('SecondView')">Click Me</ons-button>
 		<ons-button onclick="app.currentView.doSomethingSpecial('hello')">Do something special</ons-button>`;*/
+
+		// generate the chords.
+		// app.switchView("ResultsView", "pushPage", {
+		// 	root: 0,
+		// 	mood: "Reflective"
+		// });
 	}
 
 	doSomethingSpecial(input) {

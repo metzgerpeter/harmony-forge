@@ -33,9 +33,9 @@ var app = {
 		// re-instate the view controller for the current page.
 		app.viewChangeHandler();
 	},
-	switchView: (viewId, method='pushPage') => {
+	switchView: (viewId, method='pushPage', data=false) => {
 		console.log("app.switchView: ", viewId);
-		app.navigator[method]("views/" + viewId + "/" + viewId + ".html");
+		app.navigator[method]("views/" + viewId + "/" + viewId + ".html", {data: data});
 
 	}
 }

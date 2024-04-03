@@ -336,14 +336,10 @@ class Chordify {
 
 		console.log("Chord MIDI notes are " + chordRoot + ", " + chordThird + ", " + chordFifth + ", and " + chordTop + ".");
 		
-		//build array of note numbers
-		const chordNotes = [chordRoot, chordThird, chordFifth, chordTop];
 		
 		//create Chord object
-		const result = new Chord(chordName, chordNotes);
+		return new Chord(chordName, [chordRoot, chordThird, chordFifth, chordTop]);
 
-		//return Chord object
-		return(result);
 	}
 
 	static buildProgItem(root, source){ //root should be 0-11 for C-B respectively, progSource as defined above
@@ -358,6 +354,8 @@ class Chordify {
 			console.log("Chord " + (i+1) + ": " + thisChord.name + ": " + thisChord.notes);
 		}
 		console.log(myChords);
+
+		return myChords;
 	}
 }
 
