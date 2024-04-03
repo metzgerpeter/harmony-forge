@@ -40,6 +40,130 @@
 	//triad type 1 major, 2 minor, 3 augmented, 4 diminished
 	//7th type 0 octave, 1 major, 2 minor, 3 diminished
 
+const progLib = [
+    {
+        "id": 1,
+        "moods": ["bright"],
+        "chordRecipes": [
+            [1,1,0],        //chord1: I
+            [4,1,0],        //chord2: IV
+            [5,1,0],        //chord3: V
+            [5,1,2]         //chord4: V7
+        ]
+    },
+    {
+        "id": 2,
+        "moods": ["bright"],
+        "chordRecipes": [
+            [1,1,0],        //chord1: I
+            [5,1,0],        //chord2: V
+            [6,2,0],        //chord3: vi
+            [4,1,0]         //chord4: IV
+        ]
+    },
+    {
+        "id": 3,
+        "moods": ["bright"],
+        "chordRecipes": [
+            [1,1,0],        //chord1: I
+            [6,2,2],        //chord2: vi min7
+            [5,1,0],        //chord3: V
+            [4,1,0]         //chord4: IV
+        ]
+    },
+    {
+        "id": 4,
+        "moods": ["dark"],
+        "chordRecipes": [
+            [6,2,0],        //chord1: vi
+            [4,1,1],        //chord2: IV maj7
+            [4,2,0],        //chord3: iv
+            [1,1,0]         //chord4: I
+        ]
+    },
+    {
+        "id": 5,
+        "moods": ["dark"],
+        "chordRecipes": [
+            [6,2,0],        //chord1: vi
+            [5,1,0],        //chord2: V
+            [2,2,0],        //chord3: ii
+            [3,2,0]         //chord4: iii
+        ]
+    },
+    {
+        "id": 6,
+        "moods": ["dark"],
+        "chordRecipes": [
+            [6,2,0],        //chord1: vi
+            [1,1,0],        //chord2: I
+            [5,1,0],        //chord3: V
+            [2,2,0]         //chord4: ii
+        ]
+    },
+    {
+        "id": 7,
+        "moods": ["joyous"],
+        "chordRecipes": [
+            [1,1,0],        //chord1: I
+            [4,1,0],        //chord2: IV
+            [2,2,0],        //chord3: ii
+            [5,1,0]         //chord4: V
+        ]
+    },
+    {
+        "id": 8,
+        "moods": ["joyous"],
+        "chordRecipes": [
+            [2,2,0],        //chord1: ii
+            [1,1,0],        //chord2: I
+            [5,1,0],        //chord3: V
+            [5,1,0]         //chord4: V
+        ]
+    },
+    {
+        "id": 9,
+        "moods": ["joyous"],
+        "chordRecipes": [
+            [1,1,0],        //chord1: I
+            [4,1,0],        //chord2: IV
+            [5,1,0],        //chord3: V
+            [4,1,0]         //chord4: IV
+        ]
+    },
+    {
+        "id": 10,
+        "moods": ["reflective"],
+        "chordRecipes": [
+            [1,1,0],        //chord1: I
+            [6,2,0],        //chord2: vi
+            [4,1,1],        //chord3: IV maj7
+            [5,1,0]         //chord4: V
+        ]
+    },
+    {
+        "id": 11,
+        "moods": ["reflective"],
+        "chordRecipes": [
+            [1,1,0],        //chord1: I
+            [5,1,0],        //chord2: V
+            [6,2,0],        //chord3: vi
+            [4,1,1]         //chord4: IV maj7
+        ]
+    },
+    {
+        "id": 12,
+        "moods": ["reflective"],
+        "chordRecipes": [
+            [1,1,0],        //chord1: I
+            [4,1,1],        //chord2: IV maj7
+            [3,2,0],        //chord3: iii
+            [5,1,0]         //chord4: V
+        ]
+    }
+]
+
+
 class progressionSource{
 	constructor(id, moods, chordRecipes) {
 		this.id = id;
@@ -48,13 +172,6 @@ class progressionSource{
 	}
 }
 
-
-// // identifying one mood to search for
-// var moodInQuestion = "reflective";
-
-// // conducting the search using the filter method.
-// var matchingResults = progressionSources
-// 						.filter(aProgression => aProgression.moods.includes(moodInQuestion));
 
 class Chord {
 	constructor(name, notes) {
@@ -134,7 +251,7 @@ class Chordify {
 			console.log("Error: Invalid seventh tonality in recipe.");
 		}
 
-		console.log("The chord specified is a " + chordName + ".");
+		//console.log("The chord specified is a " + chordName + ".");
 
 		//define MIDI note numbers for chord tones
 		const chordRoot = 60+root+rootMod;
@@ -188,7 +305,7 @@ class Chordify {
 			console.log("Error: Invalid seventh tonality in recipe.");
 		}
 
-		console.log("Chord MIDI notes are " + chordRoot + ", " + chordThird + ", " + chordFifth + ", and " + chordTop + ".");
+		//console.log("Chord MIDI notes are " + chordRoot + ", " + chordThird + ", " + chordFifth + ", and " + chordTop + ".");
 		
 		
 		//create Chord object
@@ -205,13 +322,36 @@ class Chordify {
 		for(let i = 0; i < source.chordRecipes.length; i++){
 			const thisChord = Chordify.chordify(root,source.chordRecipes[i]);
 			myChords.push(thisChord);
-			console.log("Chord " + (i+1) + ": " + thisChord.name + ": " + thisChord.notes);
+			//console.log("Chord " + (i+1) + ": " + thisChord.name + ": " + thisChord.notes);
 		}
-		console.log(myChords);
+		//console.log(myChords);
 
 		return myChords;
 	}
+
+
+	static getProgs(root, mood){ //root should be 0-11 for C-B respectively, mood as string matching mood in library
+
+		//instantiate filtered array of matching results based on mood
+		var matches = progLib.filter(thisProg => thisProg.moods.includes(mood));
+
+		//instantiate array to hold progression items
+		const myProgs = [];
+
+		//iterate through list of matching sources to create progression items
+		for(let i = 0; i < matches.length; i++){
+			const thisProg = Chordify.buildProgItem(root,matches[i]);
+			myProgs.push(thisProg);
+		}
+
+		//console.log(myProgs);
+
+		return myProgs;
+
+	}
+
 }
 
+
 //test using progSource1 and the key of C
-console.log(Chordify.buildProgItem(0,progSource1));
+//console.log(Chordify.getProgs(0,"joyous"));
