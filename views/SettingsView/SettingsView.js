@@ -47,15 +47,18 @@ class SettingsView {
 		<ons-button onclick="app.switchView('SecondView')">Click Me</ons-button>
 		<ons-button onclick="app.currentView.doSomethingSpecial('hello')">Do something special</ons-button>`;*/
 
-		// generate the chords.
-		// app.switchView("ResultsView", "pushPage", {
-		// 	root: 0,
-		// 	mood: "Reflective"
-		// });
+		
 	}
 
-	doSomethingSpecial(input) {
-		app.switchView("LibraryView");
+	generateChords() {
+
+		// collect the user selections.
+		
+		// generate the chords.
+		app.switchView("ResultsView", "pushPage", {
+			root: 0,
+			mood: "Reflective"
+		});
 	}
 
 	// executed before view is closed
