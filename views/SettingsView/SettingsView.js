@@ -13,6 +13,15 @@ class SettingsView {
 		console.log("SettingsView is being rendered.");
 		//------ Zehui code to manage the content
 
+		var pitches = ["C", "C# / Db", "D"];
+		var outputHTML = "";
+		for(var i = 0; i < pitches.length; i ++) {
+			outputHTML += `
+				<div class="item root-item" data-value='${i}'>
+                    <span>${pitches[i]}</span>
+                </div>`;
+		}
+
 		const rootItemWrap = document.querySelector('.root-item-wrap')
 		rootItemWrap.addEventListener('click', e => {
 		    for (let value of rootItemWrap.children) {

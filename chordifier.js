@@ -179,6 +179,29 @@ const progSource12 = new progressionSource(
 	]
 );
 
+// // present chord progression sources as an array
+// var progressionSources = [
+// {
+// 	id: "blah",
+// 	moods: ["reflective", "joyous"],
+// 	recipes: []
+// }, {
+// 	id: "blah2",
+// 	moods: ["suspicious", "joyous"],
+// 	recipes: []
+// }, {
+// 	id: "blah3",
+// 	moods: ["reflective", "sad"],
+// 	recipes: []
+// }];
+
+// // identifying one mood to search for
+// var moodInQuestion = "reflective";
+
+// // conducting the search using the filter method.
+// var matchingResults = progressionSources
+// 						.filter(aProgression => aProgression.moods.includes(moodInQuestion));
+
 class Chord {
 	constructor(name, notes) {
 		this.name = name;
