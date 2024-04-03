@@ -4,7 +4,7 @@
 //ID, [moods], [[chord1], [chord2], [chord3], [chord4]]
 
 //Structure of chords in progressions
-//root note 1-7
+//root note 1-7 (by scale degree)
 //triad type 1 major, 2 minor, 3 augmented, 4 diminished
 //7th type 0 octave, 1 major, 2 minor, 3 diminished
 
@@ -34,6 +34,12 @@
 	//	["G7", 67, 71, 74, 77]
 	//]
 
+
+//Structure of chords in progressionSources
+	//root note 1-7 (by scale degree)
+	//triad type 1 major, 2 minor, 3 augmented, 4 diminished
+	//7th type 0 octave, 1 major, 2 minor, 3 diminished
+
 class progressionSource{
 	constructor(id, moods, chordRecipes) {
 		this.id = id;
@@ -42,158 +48,6 @@ class progressionSource{
 	}
 }
 
-//Structure of chords in progressions
-	//root note 1-7
-	//triad type 1 major, 2 minor, 3 augmented, 4 diminished
-	//7th type 0 octave, 1 major, 2 minor, 3 diminished
-
-const progSource1 = new progressionSource(
-	1,				//ID
-	["bright"],		//mood(s)
-	[				//array of chord recipes
-		[1,1,0],		//chord1: I
-		[4,1,0],		//chord2: IV
-		[5,1,0],		//chord3: V
-		[5,1,2]			//chord4: V7
-	]
-);
-
-const progSource2 = new progressionSource(
-	2,				//ID
-	["bright"],		//mood(s)
-	[				//array of chord recipes
-		[1,1,0],		//chord1: I
-		[5,1,0],		//chord2: V
-		[6,2,0],		//chord3: vi
-		[4,1,0]			//chord4: IV
-	]
-);
-
-const progSource3 = new progressionSource(
-	3,				//ID
-	["bright"],		//mood(s)
-	[				//array of chord recipes
-		[1,1,0],		//chord1: I
-		[6,2,2],		//chord2: vi min7
-		[5,1,0],		//chord3: V
-		[4,1,0]			//chord4: IV
-	]
-);
-
-const progSource4 = new progressionSource(
-	4,				//ID
-	["dark"],		//mood(s)
-	[				//array of chord recipes
-		[6,2,0],		//chord1: vi
-		[4,1,1],		//chord2: IV maj7
-		[4,2,0],		//chord3: iv
-		[1,1,0]			//chord4: I
-	]
-);
-
-const progSource5 = new progressionSource(
-	5,				//ID
-	["dark"],		//mood(s)
-	[				//array of chord recipes
-		[6,2,0],		//chord1: vi
-		[5,1,0],		//chord2: V
-		[2,2,0],		//chord3: ii
-		[3,2,0]			//chord4: iii
-	]
-);
-
-const progSource6 = new progressionSource(
-	6,				//ID
-	["dark"],		//mood(s)
-	[				//array of chord recipes
-		[6,2,0],		//chord1: vi
-		[1,1,0],		//chord2: I
-		[5,1,0],		//chord3: V
-		[2,2,0]			//chord4: ii
-	]
-);
-
-const progSource7 = new progressionSource(
-	7,				//ID
-	["joyous"],		//mood(s)
-	[				//array of chord recipes
-		[1,1,0],		//chord1: I
-		[4,1,0],		//chord2: IV
-		[2,2,0],		//chord3: ii
-		[5,1,0]			//chord4: V
-	]
-);
-
-const progSource8 = new progressionSource(
-	8,				//ID
-	["joyous"],		//mood(s)
-	[				//array of chord recipes
-		[2,2,0],		//chord1: ii
-		[1,1,0],		//chord2: I
-		[5,1,0],		//chord3: V
-		[5,1,0]			//chord4: V
-	]
-);
-
-const progSource9 = new progressionSource(
-	9,				//ID
-	["joyous"],		//mood(s)
-	[				//array of chord recipes
-		[1,1,0],		//chord1: I
-		[4,1,0],		//chord2: IV
-		[5,1,0],		//chord3: V
-		[4,1,0]			//chord4: IV
-	]
-);
-
-const progSource10 = new progressionSource(
-	10,				//ID
-	["reflective"],	//mood(s)
-	[				//array of chord recipes
-		[1,1,0],		//chord1: I
-		[6,2,0],		//chord2: vi
-		[4,1,1],		//chord3: IV maj7
-		[5,1,0]			//chord4: V
-	]
-);
-
-const progSource11 = new progressionSource(
-	11,				//ID
-	["reflective"],	//mood(s)
-	[				//array of chord recipes
-		[1,1,0],		//chord1: I
-		[5,1,0],		//chord2: V
-		[6,2,0],		//chord3: vi
-		[4,1,1]			//chord4: IV maj7
-	]
-);
-
-const progSource12 = new progressionSource(
-	12,				//ID
-	["reflective"],	//mood(s)
-	[				//array of chord recipes
-		[1,1,0],		//chord1: I
-		[4,1,1],		//chord2: IV maj7
-		[3,2,0],		//chord3: iii
-		[5,1,0]			//chord4: V
-	]
-);
-
-// // present chord progression sources as an array
-// var progressionSources = [
-// {
-// 	id: "blah",
-// 	moods: ["reflective", "joyous"],
-// 	recipes: []
-// }, {
-// 	id: "blah2",
-// 	moods: ["suspicious", "joyous"],
-// 	recipes: []
-// }, {
-// 	id: "blah3",
-// 	moods: ["reflective", "sad"],
-// 	recipes: []
-// }];
 
 // // identifying one mood to search for
 // var moodInQuestion = "reflective";
