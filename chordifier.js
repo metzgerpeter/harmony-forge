@@ -172,12 +172,37 @@ class progressionSource{
 	}
 }
 
+class ProgressionItem {
+	constructor(arrayOfChords) {
+	  this.chords = arrayOfChords;
+	}
+
+	getAllChords(){
+	  return this.chords;
+	}
+
+	getChord(index){ 
+	  return this.chords[index];
+	}
+
+	getChordQuantity(){
+	  return this.chords.length;
+	}
+}
 
 class Chord {
 	constructor(name, notes) {
 		this.name = name;
 		this.notes = notes;
 	}
+
+	getName(){
+        return this.name;
+    }
+
+    getNotes(){
+        return this.notes;
+    }
 }
 
 class Chordify {
@@ -307,9 +332,8 @@ class Chordify {
 
 		//console.log("Chord MIDI notes are " + chordRoot + ", " + chordThird + ", " + chordFifth + ", and " + chordTop + ".");
 		
-		
 		//create Chord object
-		return new Chord(chordName, [chordRoot, chordThird, chordFifth, chordTop]);
+		return new Chord(chordName, [chordRoot, chordThird, chordFifth, chordTop]); //with midi numbers
 
 	}
 
@@ -321,12 +345,12 @@ class Chordify {
 		//iterate through list of chord recipes to create chords in key
 		for(let i = 0; i < source.chordRecipes.length; i++){
 			const thisChord = Chordify.chordify(root,source.chordRecipes[i]);
+
 			myChords.push(thisChord);
 			//console.log("Chord " + (i+1) + ": " + thisChord.name + ": " + thisChord.notes);
 		}
 		//console.log(myChords);
-
-		return myChords;
+		return new ProgressionItem(myChords);
 	}
 
 

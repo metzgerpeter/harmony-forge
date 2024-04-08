@@ -1,9 +1,11 @@
 var app = {
 	currentView: null,	//this variable points to the current view controller.
 	navigator: null,
+	model: null,
 	init: () => {
 
 		console.log("App is ready");
+		app.model = new Model();
 
 		app.navigator = document.querySelector("#appNavigator");
 
@@ -19,6 +21,8 @@ var app = {
 		if(typeof viewController.views[app.navigator.topPage.id] != 'undefined') {
 			// instantiate the view class
 			app.currentView = new viewController.views[app.navigator.topPage.id]();
+			console.log("current view IS = ");
+			console.log(app.currentView);
 		}
 		else {
 			console.warn("app.viewHandler: Trying to go to a view that doesn't exist", app.navigator.topPage.id);
@@ -26,6 +30,8 @@ var app = {
 	},
 	pagePopHandler: event => {
 		console.log("View is being popped (postpop): ", event.leavePage);
+		/*console.log("View is being popped (postpop): ");
+		console.log(event);*/
 
 		if(typeof app.currentView.destroy == 'function')
 			app.currentView.destroy();
@@ -37,7 +43,11 @@ var app = {
 		console.log("app.switchView: ", viewId);
 		app.navigator[method]("views/" + viewId + "/" + viewId + ".html", {data: data});
 
-	}
+	},
+	finishView: (viewId) => {
+		console.log("app popping view: ", viewId);
+		app.navigator['popPage']();
+	},
 }
 
 var viewController = {

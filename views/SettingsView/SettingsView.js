@@ -3,6 +3,7 @@ class SettingsView {
 	// initialization tasks here.
 	constructor() {
 		console.log("SettingsView is being initialized.");
+		console.log(this);
 
 		// invoke the render method.
 		this.render();
@@ -15,49 +16,65 @@ class SettingsView {
 
 	// render-related tasks here.
 	render() {
+
 		console.log("SettingsView is being rendered.");
 		//------ Zehui code to manage the content
-
-		var pitches = ["C", "C# / Db", "D"];
+		//creating roots dynamically
 		var outputHTML = "";
-		for(var i = 0; i < pitches.length; i ++) {
+		for(var i = 0; i < app.model.allRoots.length; i ++) {
+			var active = "";
+			if(i == app.model.rootSel){
+				active = " active";
+			}
 			outputHTML += `
-				<div class="item root-item" data-value='${i}'>
-                    <span>${pitches[i]}</span>
+				<div class="item root-item${active}" data-value='${i}'>
+                    <span>${app.model.allRoots[i]}</span>
                 </div>`;
 		}
+		const rootContainer = document.getElementById('root-container');
+		rootContainer.innerHTML = outputHTML;
 
+		//creating moods dynamically
+		outputHTML = "";
+		for(var i = 0; i < app.model.allMoods.length; i ++) {
+			var active = "";
+			if(app.model.allMoods[i] == app.model.moodSel){
+				active = " active";
+			}
+			outputHTML += `
+				<div class="item mood-item${active}" data-value='${app.model.allMoods[i]}' >
+				    <span>${app.model.allMoods[i]}</span>
+				</div>`;
+		}
+		const moodContainer = document.getElementById('mood-container');
+		moodContainer.innerHTML = outputHTML;
+
+		//defining actions for roots and moods
 		const rootItemWrap = document.querySelector('.root-item-wrap')
 		rootItemWrap.addEventListener('click', e => {
 		    for (let value of rootItemWrap.children) {
 		        value.classList.remove('active')
 		    }
-		    e.target.classList.add('active')
+		    e.target.classList.add('active');
+		    app.model.rootSel = e.target.getAttribute('data-value');
+		    //console.log("selectedRoot= " + app.model.rootSel)
 		})
 		const moodItemWrap = document.querySelector('.mood-item-wrap')
 		moodItemWrap.addEventListener('click', e => {
 		    for (let value of moodItemWrap.children) {
 		        value.classList.remove('active')
 		    }
-		    e.target.classList.add('active')
+		    e.target.classList.add('active');
+		    app.model.moodSel = e.target.getAttribute('data-value');
+		    //console.log("selectedMood= " + app.model.moodSel)
 		})
-
-		//------- old code ----- delete when player view is complete
-		/*this.renderTarget.querySelector(".content").innerHTML = `
-		<ons-button onclick="app.switchView('SecondView')">Click Me</ons-button>
-		<ons-button onclick="app.currentView.doSomethingSpecial('hello')">Do something special</ons-button>`;*/
-
-		
 	}
 
 	generateChords() {
-
-		// collect the user selections.
-		
 		// generate the chords.
-		app.switchView("ResultsView", "pushPage", {
-			root: 0,
-			mood: "Reflective"
+		app.switchView("PlayerView", "pushPage", {
+			root: app.model.rootSel,
+			mood: app.model.moodSel
 		});
 	}
 
