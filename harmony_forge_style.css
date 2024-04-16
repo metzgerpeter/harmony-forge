@@ -186,4 +186,23 @@
     z-index: 1;
     right: 0;
     position: absolute;
+    opacity: 0.80;
+}
+
+#AboutView h1,
+#AboutView h2,
+#AboutView h3 {
+    color: white; /* Set text color to white */
+}
+
+#AboutView h1 {
+    font-size: 36px; 
+}
+
+#AboutView h2 {
+    font-size: 24px; 
+}
+
+#AboutView h3 {
+    font-size: 18px; 
 }
