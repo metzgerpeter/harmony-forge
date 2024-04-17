@@ -75,30 +75,30 @@ const progLib = [
         "id": 4,
         "moods": ["dark"],
         "chordRecipes": [
-            [6,2,0],        //chord1: vi
-            [4,1,1],        //chord2: IV maj7
-            [4,2,0],        //chord3: iv
-            [1,1,0]         //chord4: I
+            [1,2,0],        //chord1: i
+            [6,1,1],        //chord2: VI maj7
+            [6,2,0],        //chord3: vi
+            [3,1,0]         //chord4: III
         ]
     },
     {
         "id": 5,
         "moods": ["dark"],
         "chordRecipes": [
-            [6,2,0],        //chord1: vi
-            [5,1,0],        //chord2: V
-            [2,2,0],        //chord3: ii
-            [3,2,0]         //chord4: iii
+            [1,2,0],        //chord1: i
+            [7,1,0],        //chord2: VII
+            [4,2,0],        //chord3: iv
+            [5,2,0]         //chord4: v
         ]
     },
     {
         "id": 6,
         "moods": ["dark"],
         "chordRecipes": [
-            [6,2,0],        //chord1: vi
-            [1,1,0],        //chord2: I
-            [5,1,0],        //chord3: V
-            [2,2,0]         //chord4: ii
+            [1,2,0],        //chord1: i
+            [3,1,0],        //chord2: III
+            [7,1,0],        //chord3: VII
+            [4,2,0]         //chord4: iv
         ]
     },
     {
@@ -279,7 +279,14 @@ class Chordify {
 		//console.log("The chord specified is a " + chordName + ".");
 
 		//define MIDI note numbers for chord tones
-		const chordRoot = 60+root+rootMod;
+		if (root > 6){
+			let chordRoot = 48+root+rootMod;
+		}
+		else{
+			let chordRoot = 60+root+rootMod;
+		}
+
+		//define remaining tones temporarily as root for later adjustment
 		let chordThird = chordRoot;
 		let chordFifth = chordRoot;
 
