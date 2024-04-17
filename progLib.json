@@ -33,30 +33,30 @@
         "id": 4,
         "moods": ["dark"],
         "chordRecipes": [
-            [6,2,0],        //chord1: vi
-            [4,1,1],        //chord2: IV maj7
-            [4,2,0],        //chord3: iv
-            [1,1,0]         //chord4: I
+            [6,2,0],        //chord1: vi        i
+            [4,1,1],        //chord2: IV maj7   VI maj7
+            [4,2,0],        //chord3: iv        vi
+            [1,1,0]         //chord4: I         III
         ]
     },
     {
         "id": 5,
         "moods": ["dark"],
         "chordRecipes": [
-            [6,2,0],        //chord1: vi
-            [5,1,0],        //chord2: V
-            [2,2,0],        //chord3: ii
-            [3,2,0]         //chord4: iii
+            [6,2,0],        //chord1: vi        i
+            [5,1,0],        //chord2: V         VII
+            [2,2,0],        //chord3: ii        iv
+            [3,2,0]         //chord4: iii       v
         ]
     },
     {
         "id": 6,
         "moods": ["dark"],
         "chordRecipes": [
-            [6,2,0],        //chord1: vi
-            [1,1,0],        //chord2: I
-            [5,1,0],        //chord3: V
-            [2,2,0]         //chord4: ii
+            [6,2,0],        //chord1: vi        i
+            [1,1,0],        //chord2: I         III
+            [5,1,0],        //chord3: V         VII
+            [2,2,0]         //chord4: ii        iv
         ]
     },
     {
