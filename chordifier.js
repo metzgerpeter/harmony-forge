@@ -279,11 +279,13 @@ class Chordify {
 		//console.log("The chord specified is a " + chordName + ".");
 
 		//define MIDI note numbers for chord tones
+		let chordRoot = 60;	//temp definition to be reassigned later
+
 		if (root > 6){
-			let chordRoot = 48+root+rootMod;
+			chordRoot = 48+root+rootMod;
 		}
 		else{
-			let chordRoot = 60+root+rootMod;
+			chordRoot = 60+root+rootMod;
 		}
 
 		//define remaining tones temporarily as root for later adjustment
